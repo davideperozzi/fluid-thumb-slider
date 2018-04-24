@@ -1,0 +1,185 @@
+@import "dj-scss/mixins/css3";
+
+$fluidts-wrapper-height: 60px !default;
+$fluidts-wrapper-width: 100% !default;
+$fluidts-thumb-size: 60px !default;
+$fluidts-marker-size: 70% !default;
+$fluidts-active-scale: 1 !default;
+$fluidts-border-radius: 10px !default;
+$fluidts-primary-color: #4E4DE1 !default;
+$fluidts-secondary-color: #FFFFFF !default;
+$fluidts-transition-speed-in: .3s !default;
+$fluidts-transition-speed-out: .5s !default;
+$fluidts-transition-function-in: ease-in-out !default;
+$fluidts-transition-function-out: cubic-bezier(0.050, 0.885, 0.345, 1.245) !default;
+
+$active-offset-scale: ($fluidts-wrapper-height / 2) * ($fluidts-active-scale);
+$active-offset: $fluidts-wrapper-height / 2 + $active-offset-scale;
+
+.fluidts-wrapper {
+    position: relative;
+    width: $fluidts-wrapper-width;
+    height: $fluidts-wrapper-height;
+    border-radius: $fluidts-border-radius;
+    background-color: $fluidts-primary-color;
+    font-family: Arial;
+
+    @include display-flex;
+    @include flex-direction(row);
+    @include align-items(center);
+    @include box-sizing(border-box);
+    @include box-shadow(0px 3px 20px rgba(black, .2));
+    @include user-select(none);
+}
+
+.fluidts-range-label {
+    color: white;
+    font-size: 14px;
+    letter-spacing: .5px;
+
+    @include box-sizing(border-box);
+
+    &.fluidts-min-label {
+        padding: 0 0px 0px 20px;
+    }
+
+    &.fluidts-max-label {
+        padding: 0 20px 0px 0px;
+    }
+}
+
+.fluidts-drag-container {
+    position: relative;
+
+    @include display-flex;
+    @include flex-direction(row);
+    @include align-items(center);
+    @include justify-content(flex-start);
+}
+
+.fluidts-display-wrapper {
+    position: relative;
+    z-index: 3;
+    height: $fluidts-thumb-size;
+    width: $fluidts-thumb-size;
+}
+
+.fluidts-dot-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.fluidts-display-container {
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+
+    @include transition(
+        transform $fluidts-transition-speed-in $fluidts-transition-function-in
+    );
+
+    .fluidts-wrapper.fluidts-active & {
+        @include transform(translate3d(0, -$active-offset, 0));
+        @include transition(
+            transform $fluidts-transition-speed-out $fluidts-transition-function-out
+        );
+    }
+
+    .fluidts-display-label,
+    .fluidts-display-circle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+
+        @include transform(translate(-50%, -50%));
+    }
+
+    .fluidts-display-label {
+        z-index: 2;
+    }
+
+    .fluidts-display-circle {
+        width: $fluidts-marker-size;
+        height: $fluidts-marker-size;
+        background-color: $fluidts-secondary-color;
+        border-radius: 50%;
+    }
+}
+
+.fluidts-shape-wrapper {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.fluidts-shape-filter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    @include display-flex;
+    @include flex-direction(row);
+    @include align-items(center);
+    @include justify-content(flex-start);
+}
+
+.fluidts-shape-circle {
+    width: $fluidts-thumb-size;
+    height: $fluidts-thumb-size;
+
+    @include transition(top .3s);
+
+    &:after {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: $fluidts-primary-color;
+
+        @include transition(
+            top $fluidts-transition-speed-in $fluidts-transition-function-in
+        );
+    }
+
+    .fluidts-wrapper.fluidts-active &:after {
+        top: -$active-offset;
+
+        @include transition(
+            top $fluidts-transition-speed-out $fluidts-transition-function-out
+        );
+    }
+}
+
+.fluidts-shape-box {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    top: 0;
+    left: 0;
+    background-color: $fluidts-primary-color;
+}
+
+.fluidts-display-label {
+    font-size: 13px;
+    color: darken($fluidts-primary-color, 20);
+    pointer-events: none;
+
+    @include user-select(none);
+}
+
+.fluidts-drag-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    @include flex-grow(1);
+}

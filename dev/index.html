@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Fluid thumb slider</title>
+
+        <!-- FluidTS styles -->
+        <link rel="stylesheet" href="./dist/fluidts.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Demo styles -->
+        <style>
+            .page-wrapper {
+                width: 100vw;
+                height: 100vh;
+            }
+
+            #slider-wrapper {
+                max-width: 320px;
+                width: 100%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-wrapper">
+            <div id="slider-wrapper"></div>
+        </div>
+
+        <!-- Closure -->
+        <script src="./node_modules/google-closure-library/closure/goog/base.js"></script>
+        <script src="./etc/fluidts.deps.js"></script>
+
+        <!-- Bootstrap -->
+        <script>goog.require('fluidts')</script>
+        <!-- <script src="./dist/fluidts.min.js"></script> -->
+        <script>
+            var fluidts = new fluidts.RangeSlider('#slider-wrapper', {range: [0, 300]});
+        </script>
+    </body>
+</html>

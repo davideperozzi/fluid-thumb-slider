@@ -1,0 +1,36 @@
+{
+  "name": "fluid-thumb-slider",
+  "version": "1.0.0",
+  "description": "Fluid thumb slider",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davideperozzi/fluid-thumb-slider.git"
+  },
+  "keywords": [
+    "fluid",
+    "thumb",
+    "throwable",
+    "slider"
+  ],
+  "author": "Davide Perozzi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davideperozzi/fluid-thumb-slider/issues"
+  },
+  "homepage": "https://github.com/davideperozzi/fluid-thumb-slider#readme",
+  "dependencies": {
+    "momentum.js": "^1.1.0"
+  },
+  "devDependencies": {
+    "dj-gulp-tasks": "^1.1.0",
+    "dj-scss": "^1.0.23",
+    "google-closure-compiler": "^20170124.0.0",
+    "google-closure-library": "^20180405.0.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.5.0"
+  }
+}
